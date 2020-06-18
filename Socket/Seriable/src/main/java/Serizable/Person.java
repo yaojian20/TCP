@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 
 //如果父类没有实现序列化，那么父类的成员变量也不会被序列化
+    //序列化再反序列化可实现深克隆
 public class Person implements Serializable {
     private static final long serialVersionUID = 8433660785139039727L;
 
