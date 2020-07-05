@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.yao.springCXF.service"/>
+    <jaxrs:server address="/" id="restServiceContainer">
+
+<!--        配置远程调用service-->
+        <jaxrs:serviceBeans>
+            <ref bean="userServiceImpl"></ref>
+        </jaxrs:serviceBeans>
+
+
+<!--        配置客户端支持的返回类型-->
+        <jaxrs:extensionMappings>
+
+            <entry key="json" value="application/json"></entry>
+            <entry key="xml" value="application/xml"></entry>
+        </jaxrs:extensionMappings>
+
+<!--        webservice基于http+xml传输，所以默认有xml格式，所以不需要声明xml的provider-->
+<!--        设置支持json的provider-->
+        <jaxrs:providers>
+            <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+
+</beans>
