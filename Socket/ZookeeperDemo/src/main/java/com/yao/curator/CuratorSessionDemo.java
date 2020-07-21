@@ -19,8 +19,12 @@ public class CuratorSessionDemo {
         //1.normal
         CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(CONNECTTIONURL,5000,5000,new ExponentialBackoffRetry(1000,3));
 
+        //必须要通过start来建立链接
+        curatorFramework.start();
 
         //2.fluent风格,即链式结构
         CuratorFramework curatorFramework1 = CuratorFrameworkFactory.builder().connectString(CONNECTTIONURL).sessionTimeoutMs(5000).connectionTimeoutMs(5000).retryPolicy(new ExponentialBackoffRetry(1000,3)).build();
+
+        curatorFramework1.start();
     }
 }
