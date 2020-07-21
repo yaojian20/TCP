@@ -64,7 +64,7 @@ public class CreateNodeDemo implements Watcher {
         zookeeper.setData(path+"/node1","mic123".getBytes(),-1);
         TimeUnit.SECONDS.sleep(1);
         //获取子节点
-        List<String> children = zookeeper.getChildren("nod/e",true);
+        List<String> children = zookeeper.getChildren("node/",true);
 
 
     }
