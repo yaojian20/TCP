@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class CreateNodeDemo implements Watcher {
 
-    private final static String CONNECTTIONURL = "192.168.88.88:2181,192.168.88.89:2181" +
-            "192.168.88.90:2181,192.168.88.91:2181";
+    private final static String CONNECTTIONURL = "192.168.88.88:21810,192.168.88.89:21810" +
+            ",192.168.88.90:21810,192.168.88.91:21810";
 
     private static CountDownLatch countDownLatch = new CountDownLatch(1);
 
