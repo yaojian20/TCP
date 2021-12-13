@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class CreateNodeDemo implements Watcher {
 
-    private final static String CONNECTTIONURL = "192.168.88.88:21810,192.168.88.89:21810" +
-            ",192.168.88.90:21810,192.168.88.91:21810";
+    private final static String CONNECTTIONURL = "192.168.88.88:2181,192.168.88.89:2181" +
+            ",192.168.88.90:2181,192.168.88.91:2181";
 
     private static CountDownLatch countDownLatch = new CountDownLatch(1);
 
@@ -31,7 +31,7 @@ public class CreateNodeDemo implements Watcher {
         countDownLatch.await();//用来阻塞线程，因为zookeeper是异步的线程，等待zookeeper创建链接之后主线程再继续
 
         System.out.println(zookeeper.getState());
-        String result = zookeeper.create("/node1", "123".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+        String result = zookeeper.create("/node1", "123".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
         zookeeper.getData("/node1", new CreateNodeDemo(), stat);//添加监听
 
         //修改数据
@@ -41,11 +41,12 @@ public class CreateNodeDemo implements Watcher {
         zookeeper.setData("/node1","345".getBytes(),-1);
         Thread.sleep(2000);
         //删除node
-        zookeeper.delete("/del/del1",-1);
+        //zookeeper.delete("/del/del1",-1);
         Thread.sleep(2000);
 
         //创建子节点
         String path = "/nodes2";
+        //判断节点是否存在，同时注册监听
         Stat st = zookeeper.exists(path,true);
         if(st==null){
             //节点不存在
@@ -64,7 +65,7 @@ public class CreateNodeDemo implements Watcher {
         zookeeper.setData(path+"/node1","mic123".getBytes(),-1);
         TimeUnit.SECONDS.sleep(1);
         //获取子节点
-        List<String> children = zookeeper.getChildren("node/",true);
+        List<String> children = zookeeper.getChildren("/node1ls",true);
 
 
     }

@@ -14,8 +14,8 @@ import java.util.concurrent.TimeUnit;
 
 public class CreateSesssion {
 
-    private final static String CONNECTTIONURL = "192.168.88.88:21810,192.168.88.89:21810" +
-            ",192.168.88.90:21810,192.168.88.91:21810";
+    private final static String CONNECTTIONURL = "192.168.88.88:2181,192.168.88.89:2181" +
+            ",192.168.88.90:2181,192.168.88.91:2181";
 
     private  static ZkClient getInstance(){
         return  new ZkClient(CONNECTTIONURL,5000);

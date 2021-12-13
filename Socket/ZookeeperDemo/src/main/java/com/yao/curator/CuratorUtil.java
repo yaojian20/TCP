@@ -16,9 +16,9 @@ public class CuratorUtil {
     private static CuratorFramework curatorFramework;
 
     public static CuratorFramework getInstance(){
-        curatorFramework = CuratorFrameworkFactory.builder().connectString(CONNECTTIONURL).sessionTimeoutMs(5000).connectionTimeoutMs(5000).retryPolicy(new ExponentialBackoffRetry(1000,3)).build();
-
+        curatorFramework = CuratorFrameworkFactory.builder().connectString(CONNECTTIONURL).sessionTimeoutMs(1000000).connectionTimeoutMs(5000000).retryPolicy(new ExponentialBackoffRetry(1000,3)).build();
         curatorFramework.start();
+        System.out.println("getInstance()!!!!!!!!!!!!");
         return  curatorFramework;
     }
 }

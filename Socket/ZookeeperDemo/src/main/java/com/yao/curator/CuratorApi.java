@@ -20,11 +20,13 @@ public class CuratorApi {
 
 
     public static void main(String[] args) throws Exception {
+
+        System.out.println("hello!");
         CuratorFramework curatorFramework = CuratorUtil.getInstance();
 
         //创建子节点，如果父节点没有会一起创建父节点，永久性节点
         curatorFramework.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/node/node1","node".getBytes());
-
+        System.out.println("hello!");
         Stat stat = new Stat();
         //获得节点数据
         byte[] bytes = curatorFramework.getData().storingStatIn(stat).forPath("/node");

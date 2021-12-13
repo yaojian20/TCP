@@ -13,8 +13,8 @@ import java.util.concurrent.Semaphore;
  */
 public class MasterTest {
 
-    private final static String CONNECTTIONURL = "192.168.88.88:21810,192.168.88.89:21810," +
-            "192.168.88.90:21810,192.168.88.91:21810";
+    private final static String CONNECTTIONURL = "192.168.88.88:2181,192.168.88.89:2181," +
+            "192.168.88.90:2181,192.168.88.91:2181";
 
     private  static ZkClient getInstance(){
         return  new ZkClient(CONNECTTIONURL,100000,100000,new SerializableSerializer());
